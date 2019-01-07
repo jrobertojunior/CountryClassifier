@@ -1,0 +1,10 @@
+parametro C do svm
+RBF
+
+- split sklearn
+- escalar dataset com scikit learn
+- pca
+- busca em malha (grid seach)
+
+- usar ensamble methods (https://scikit-learn.org/stable/modules/ensemble.html)
+	- Forests of randomized trees

@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import svm
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -47,15 +48,37 @@ for indicator in indicators:
     #plot(indicator, 'HDI')
 
 half = len(data) >> 1
+# create scaler
+scaler = StandardScaler()
+scaler.fit(data)
+scaler.transform(data)
+
+print(data['GDP per Capita'].max())
+# print(data2[0:10])
+
+
 
 # crate svm
-
-C = [10**x for x in range(10)]
+'''
+C = [10**x for x in range(4)]
+count = False
 for c in C:
-    clf = svm.SVC(C=c, gamma='scale')
-    clf.fit(data[:half], target[:half])
-    predict = clf.predict(data[half:])
+    if (count is False):
+        #print(data2[:half])
+        count = True
 
+    clf = svm.SVC(C=c, gamma='scale')
+    clf.fit(data2[:half], target[:half])
+    predict = clf.predict(data2[half:])
+    print(predict)
     print(evaluate(predict, target))
+'''
+c = 10000
+clf = svm.SVC(C=c, gamma='scale')
+clf.fit(data[:half], target[:half])
+predict = clf.predict(data[half:])
+print(predict)
+print(evaluate(predict, target))
+
 
 plt.show()
